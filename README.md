@@ -3,7 +3,7 @@
 
 ## INTRODUÇÃO
 
-Este repositório está relacionados as aulas de AED da turma ADS 2024 /02 do IFNMG - Campus Almenara. A primeira parte da disciplina será voltada para a compreensão da construção de algoritmos utilizando a linguagem C, no ambiente Linux Mint e editor VS Code.
+Este repositório está relacionados as aulas de AED da turma ADS 2024 /02 do IFNMG - Campus Almenara. A primeira parte da disciplina será voltada para a compreensão da construção de algoritmos utilizando a linguagem C, no ambiente Linux Mint e editor VS Code, compilador GCC.
 
 
 ## História e Origem
@@ -50,3 +50,62 @@ __Tipo bool__: O stdbool.h define um novo tipo de dado, bool, que é essencialme
 __Constantes true e false__: A biblioteca também define as constantes true e false, que são equivalentes a 1 e 0, respectivamente. Isso facilita a leitura e compreensão do código.
 
 __Compatibilidade__: O uso de stdbool.h não interfere na funcionalidade do código legado, onde inteiros eram usados para representar valores booleanos.
+
+## Codigo Modelo em C
+'''
+//Estrutura básica de um arquivo em C.
+/*
+    Descrição: Explicação objetiva do conteúdo e funcionamento do arquivo.
+    Autor: Nome do autor do arquivo.
+    Data da Criação: Data em que foi criado o arquivo.
+    Parâmetros: [Input | Output]
+                Descrição dos parâmetros caracterizando o tipo, a faixa de valores e a função (**se existir)
+
+    Data de Alteração | Autor | Alteração:
+                Decrição da data de alteração, autor e resumo simples da alteração realizada.
+*/
+// Bibliotecas utilizadas
+#include <stdio.h> // descrição da necessidade e função da biblioteca
+
+// Definições de macros e constantes de definição
+#define NOME "NOME"
+
+// Definição de variáveis de escopo global
+const empresa = IFNMG
+
+// Definição das funções criadas e utilizadas no arquivo
+int soma(int a, int b);
+
+// Função principal do arquivo
+int main() {
+    // Declaração de variáveis de escopo local
+    int a = 10;
+    int b = 20;
+    int c;
+
+    // Atribuição de valores
+    c = a + b;
+
+    // Saída de dados
+    printf("Soma de %d + %d = %d\n", a, b, c);
+
+    return 0; // retorno definido para a função
+}
+
+// Corpo de código da definição da Função soma
+int soma(int a, int b){
+    return a+b;
+}
+
+/* 
+// Compilação
+comp-usr~$ gcc aula-202409021900.c -o aula-202409021900
+
+// Execução
+comp-usr~$ ./aula-202409021900
+
+// Saída
+Soma de 10 + 20 = 30
+*/
+// Fim do arquivo
+'''
