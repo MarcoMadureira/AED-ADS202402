@@ -52,7 +52,7 @@ __Constantes true e false__: A biblioteca também define as constantes true e fa
 __Compatibilidade__: O uso de stdbool.h não interfere na funcionalidade do código legado, onde inteiros eram usados para representar valores booleanos.
 
 ## Codigo Modelo em C
-'''
+```C
 //Estrutura básica de um arquivo em C.
 /*
     Descrição: Explicação objetiva do conteúdo e funcionamento do arquivo.
@@ -108,4 +108,4 @@ comp-usr~$ ./aula-202409021900
 Soma de 10 + 20 = 30
 */
 // Fim do arquivo
-'''
+```
