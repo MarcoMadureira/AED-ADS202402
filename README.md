@@ -46,5 +46,7 @@ __Ausência de Orientação a Objetos__: C não suporta nativamente programaçã
 8. __`stdbool.h`__ A biblioteca stdbool.h em C é uma inclusão relativamente recente (introduzida no padrão C99) que oferece uma maneira padrão e mais legível de trabalhar com valores booleanos (verdadeiro ou falso). Antes do stdbool.h, os programadores em C geralmente usavam inteiros (int) para representar valores booleanos, onde 0 significava "falso" e qualquer outro valor significava "verdadeiro".
 ### Características Principais
 __Tipo bool__: O stdbool.h define um novo tipo de dado, bool, que é essencialmente um alias para int. Isso permite que os programadores usem bool para declarar variáveis booleanas em vez de usar int.
+
 __Constantes true e false__: A biblioteca também define as constantes true e false, que são equivalentes a 1 e 0, respectivamente. Isso facilita a leitura e compreensão do código.
+
 __Compatibilidade__: O uso de stdbool.h não interfere na funcionalidade do código legado, onde inteiros eram usados para representar valores booleanos.
