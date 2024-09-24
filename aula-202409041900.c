@@ -1,55 +1,35 @@
-/*
-   Descrição: exercicio de verificação de definição de tipos, entrada e saída de dados.
-   - Estruturas de controle:
-    -- scanf("%<formato>", &variável); //
-    -- printf(" texto formatado", <lista de variáveis>)
-   - Operadores:
-    -- & operador de referência de memória
-    -- ( <condição> ? <resultado para .true.> : <resultado para .false.>) operador ternário
-   - Definição de funções internas
-    -- assinatura da função
-    -- código da função
-
-*/
-
 #include <stdio.h>
 
-// função
+// assinatura de função
 int lernum();
 
-void main()
-{
-    int variavel = 0;
-    int A, B;
+// função main
+void main(){
+    int variavel=0;
+    int maior=-1;
+    int num1 = lernum();
+    int num2 = lernum();
 
-    // solicita um número
-    printf("Digite um número: ");
-    scanf("%d", &variavel);
+    // printf("Digite um numero: ");
+    // scanf("%d", &variavel);
+    // printf("Minha variável é: %d \n\n", variavel);
 
-    // Verifica se o numero é par ou impar
-    if ((variavel % 2) == 0)
-    {
-        printf("O número %d é par!\n");
+    // Mostrar o maior numero
+    maior = (num1 > num2 ? num1 : num2);
+    printf("o numero %d é Maior\n", maior);
+
+    //((maior%2)==0 ? printf("Este numero %d é par\n", maior) : printf("Este numero %d é impar\n", maior));
+    printf("Este numero %d é %s\n", maior, ((maior%2)==0 ? "par":"impar"));
+    if((maior%2)==0){
+        printf("O numero %d é par\n", maior);
     }
-    else
-    {
-        printf("O número %d é impar!\n");
-    }
 
-    // Solicita dois numeros
-    A = lernum();
-    B = lernum();
-
-    // Escreve o maior deles
-    printf("O número %d é o maior\n", ((A > B) ? A : B));
-    printf("")
 }
 
-//
-int lernum()
-{
-    int resultado = 0;
-    printf("digite um numero: ");
-    scanf("%d", &resultado);
-    return resultado;
+// Função ler num
+int lernum(){
+    int var=0;
+    printf("\ndigite um numero\t");
+    scanf("%d", &var);
+    return var;
 }
