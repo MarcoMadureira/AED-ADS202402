@@ -1,0 +1,3 @@
+100	Marco Aurelio	R. Cinco, 23 - Centro	10\10\1966
+101	Maria Aurelia	R. Cinco, 24 - Centro	11\10\1966
+102	Mario Aurelio	R. Cinco, 25 - Centro	12\10\1966

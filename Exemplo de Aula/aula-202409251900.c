@@ -1,11 +1,17 @@
 #include <stdio.h>
+#include <string.h>
+
+struct DATA 
+{
+    int dia, mes, ano;
+};
 
 struct AGENDA
 {
     int codigo;
     char *nome;
     char *telefone;
-    char *dt_nasc;
+    struct DATA dt_nasc;
 };
 
 int main()
@@ -16,32 +22,14 @@ int main()
     agenda.codigo = 100;
     agenda.nome = "Marco";
     agenda.telefone = "(38)99131-1600";
-    agenda.dt_nasc = "10/10/1966";
+    agenda.dt_nasc.ano = 1966;
+    agenda.dt_nasc.mes = 10;
+    agenda.dt_nasc.dia = 10;
 
-    printf("%d\t", agenda.codigo);
-    printf("%s\t", agenda.nome);
-    printf("%s\t", agenda.telefone);
-    printf("%s\n", agenda.dt_nasc);
-
+    
     lerDados(&agenda);
 
-
     mostrarDados(&agenda);
-
-
-    // FILE *ptrFile = fopen("agenda.txt");
-
-    // if (ptrFile == NULL)
-    // {
-    //     fprintf(ptrFile, agenda.codigo);
-    //     fprintf(ptrFile, agenda.nome);
-    //     fprintf(ptrFile, agenda.telefone);
-    //     fprintf(ptrFile, agenda.dt_nasc);
-    // }
-    // else
-    // {
-    //     printf("Erro de Acesso ao Arquivo");
-    // }
 
     return 0;
 };
