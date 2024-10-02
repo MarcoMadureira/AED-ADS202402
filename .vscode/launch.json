@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Repositorios-Git/ads202402-ADE/AED-ADS202402",
-      "program": "d:/Repositorios-Git/ads202402-ADE/AED-ADS202402/build/Debug/outDebug",
+      "cwd": "d:/Repositorios-Git/ads202402-ADE/AEDADS0224/AED-ADS202402/Exemplo de Aula",
+      "program": "d:/Repositorios-Git/ads202402-ADE/AEDADS0224/AED-ADS202402/Exemplo de Aula/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
