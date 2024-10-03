@@ -1,23 +1,23 @@
 #include <stdio.h>
 
-struct DATA
+typedef struct
 {
     int dia;
     int mes;
     int ano;
-};
+} DATA;
 
-struct AGENDA
+typedef struct 
 {
     int codigo;
     char *nome;
     char *endereco;
-    struct DATA dtnasc;
-};
+    DATA dtnasc;
+} AGENDA;
 
 int main()
 {
-    struct AGENDA agenda[3];
+    AGENDA agenda[3];
 
     agenda[0].codigo = 100;
     agenda[0].nome = "Marco Aurelio";
