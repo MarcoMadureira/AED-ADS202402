@@ -8,16 +8,16 @@ Este código é responsável pelo cadastro de até 100 dados de uma pessoa com o
 
 Este código utiliza a função main para chamar as opções de CRUD para esses dados.
 
-#1ª Parte
+# 1ª Parte
 
-##Tipos de Dados utilizados no código
-###Tipos de Dados Primitivos
+## Tipos de Dados utilizados no código
+### Tipos de Dados Primitivos
 **Números** os números são do tipo inteiro (int). 
 **Textos** Os dados do tipo string são tratados na linguagem C como um vetor de caracteres.
 **Estrutura de Dados do Usuário** As estruturas (struct) são tipos de dados definidos pelo usuário para poder facilitar a criação de modelos de dados que não são contemplados nos tipos primitivos de dados, para tanto são construídas a partir destes tipos primitivos.
 **Modificadores** A linguagem C tem alguns modificadores de tipos
 
-###Instruções e comandos de definição de tipos de dados
+### Instruções e comandos de definição de tipos de dados
 **int** define o tipo de dados inteiro, padrão (32 bits). A faixa de valores é:
 Mínimo: -2.147.483.648
 Máximo:  2.147.483.647 
