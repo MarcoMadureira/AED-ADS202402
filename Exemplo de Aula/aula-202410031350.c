@@ -68,8 +68,8 @@ void listar(ListaTAD* lista) {
 
 // Função para liberar memória da lista
 void liberar_lista(ListaTAD* lista) {
-    free(lista->dados);
-    free(lista);
+    free(lista->dados); // LIBERA DOS DADOS DA LISTA. APAGA O VETOR DE NUMEROS
+    free(lista);        // LIBERA A LISTA.
 }
 
 int main() {
