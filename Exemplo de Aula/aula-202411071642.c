@@ -22,7 +22,8 @@ struct No
 // Criar uma lista de dados
 struct No *criarLista()
 {
-    return NULL;
+    struct No *newNo = NULL;
+    return newNo;
 }
 
 // Criar um elemento da lista
@@ -59,27 +60,26 @@ void liberarLista(struct No *head)
 // incluir um elemento na lista criada
 void incluirElementoLista(struct dados _dados_, struct No **lista)
 {
-    struct No *Atual = (*lista);
+    struct No *Atual = *lista;
     struct No *Proximo;
-    if (Atual != NULL)
+    if(*lista == NULL) *lista = criarNo(_dados_) ;
+    else if( *lista != NULL)
     {
         // próximo elemento
-        while (Atual != NULL)
+        while ((*lista)->next != NULL)
         {
-            
-            Proximo = Atual->next; // = (Atual)->next;
-            Atual = Proximo;
-        }        
+            //Proximo = (*lista)->next;
+            (*lista) = (*lista)->next;// Proximo;
+        }   
+        (*lista) = criarNo(_dados_);     
     }
-    // incluir elemento
-    Atual = criarNo(_dados_);
-    printf("Novo Elemento\n");
+    
     return;
 }
 
 void imprimirLista(struct No *lista)
 {
-     struct No *Atual = &(*lista);
+     struct No *Atual = lista;
      struct No *next;
 
     if (Atual == NULL)
@@ -88,7 +88,7 @@ void imprimirLista(struct No *lista)
     }
     else
     {
-        do
+        while (Atual->next != NULL)
         {
             //printf("\nLista %p\n", &Atual);
             printf("Nome: %s \n", Atual->Dado.nome);
@@ -97,7 +97,7 @@ void imprimirLista(struct No *lista)
             printf("Salario: %f\n", Atual->Dado.salario);
             next = Atual->next;
             Atual = next;
-        } while (Atual->next != NULL);
+        }
     }
 
     return;
@@ -105,7 +105,7 @@ void imprimirLista(struct No *lista)
 
 int main()
 {
-    struct No *lstD = criarLista(); // Lista simples
+    struct No *lstD = NULL; // Lista simples
     struct dados tmpDados;
 
     imprimirLista(lstD);
