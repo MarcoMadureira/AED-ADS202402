@@ -3,21 +3,21 @@
 //#include <string.h>
 
 // Estrutura para conter os dados do registro
-typedef struct dados
+struct dados
 {
     /* data */
     char *nome;
     int dtNasc;
     char *endereco;
     float salario;
-} dados;
+};
 
 struct No
 {
     /* data */
-    dados Dado;
+    struct dados Dado;
     struct No* next;
-} No;
+};
 
 // Criar uma lista de dados
 struct No *criarLista()
@@ -26,7 +26,7 @@ struct No *criarLista()
 }
 
 // Criar um elemento da lista
-struct No *criarNo(dados _dados_)
+struct No *criarNo(struct dados _dados_)
 {
     struct No *newNo = (struct No*)malloc(sizeof(struct No));
     if (newNo == NULL)
@@ -57,9 +57,9 @@ void liberarLista(struct No *head)
 }
 
 // incluir um elemento na lista criada
-void incluirElementoLista(dados _dados_, struct No *lista)
+void incluirElementoLista(struct dados _dados_, struct No **lista)
 {
-    struct No *Atual = *(&lista);
+    struct No *Atual = (*lista);
     struct No *Proximo;
     if (Atual != NULL)
     {
@@ -115,7 +115,7 @@ int main()
     tmpDados.nome = "Maria das Dores\0";
     tmpDados.salario = 23000.00;
 
-    incluirElementoLista(tmpDados, lstD);
+    incluirElementoLista(tmpDados, &lstD);
     imprimirLista(lstD);
 
     tmpDados.dtNasc = 20241109;
@@ -123,7 +123,7 @@ int main()
     tmpDados.nome = "João das Flores\0";
     tmpDados.salario = 21000.00;
 
-    incluirElementoLista(tmpDados, lstD);
+    incluirElementoLista(tmpDados, &lstD);
     imprimirLista(lstD);
 
     tmpDados.dtNasc = 20241111;
@@ -131,7 +131,7 @@ int main()
     tmpDados.nome = "Ana Botafogo\0";
     tmpDados.salario = 25000.00;
 
-    incluirElementoLista(tmpDados, lstD);
+    incluirElementoLista(tmpDados, &lstD);
 
     imprimirLista(lstD);
 
