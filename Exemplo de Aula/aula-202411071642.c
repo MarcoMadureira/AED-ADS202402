@@ -3,7 +3,7 @@
 #include <string.h>
 
 // Estrutura para conter os dados do registro
-typedef struct dados
+struct dados
 {
     /* data */
     char *nome;
@@ -16,61 +16,127 @@ typedef struct dados
 struct No
 {
     /* data */
-    dados Dado;
+    struct dados Dado;
     struct No *next;
-};
+} No;
 
 // Criar uma lista de dados
 struct No *criarLista()
 {
-    struct No * lista = (struct No *)malloc(sizeof(struct No));
-    lista->next = NULL;
-    return lista;
+    return NULL;
+}
+
+struct No *criarNo(struct dados _dados_)
+{
+    struct No *newNo = (struct No *)malloc(sizeof(struct No));
+    if (newNo == NULL)
+    {
+        printf("\nErro de alocação de memória.\n");
+        return NULL;
+    }
+    newNo->Dado = _dados_;
+    newNo->next = NULL;
+    return newNo;
+}
+
+// Função para liberar a memória da lista
+void liberarLista(struct No *head)
+{
+    struct No *atual = head;
+    struct No *proximo;
+
+    while (atual != NULL)
+    {
+        proximo = atual->next;
+        free(atual);
+        atual = proximo;
+        printf("foi\n");
+    }
+
+    head = NULL;
+    printf("Memória liberada.\n");
 }
 
 // incluir um elemento na lista criada
-void incluirElementoLista( dados _dados_, struct No *lista)
+void incluirElementoLista(struct dados _dados_, struct No **lista)
 {
-    struct No *ptTmp = (struct No *)malloc(sizeof(struct No));
-
-    // Se a lista está vazia inclui o elemento
-    if (lista->next == NULL)
+    struct No *Atual = (*lista);
+    struct No *next;
+    if (Atual == NULL)
     {
-        lista = ptTmp;
-        lista->Dado = _dados_;
-        lista->next = NULL;
-        return;
+        printf("\nLIsta Vazia. %p\n", Atual);
+        (Atual) = criarNo(_dados_);
+    }
+    else
+    {
+        while (Atual->next != NULL)
+        {
+            next = (Atual)->next;
+            (Atual) = next;
+        }
+        (Atual)->next = criarNo(_dados_);
+        printf("Novo Elemento\n");
+    }
+    return;
+}
+
+void imprimirLista(struct No **lista)
+{
+    struct No *Atual = (*lista);
+    struct No *next;
+
+    if (Atual == NULL)
+    {
+        printf("\nLista está vazia!\n");
+    }
+    else
+    {
+        do
+        {
+            printf("\nLista %p\n", Atual);
+            printf("Nome: %s \n", Atual->Dado.nome);
+            printf("Endereço: %s\n", Atual->Dado.endereco);
+            printf("DtNasc: %d\n", Atual->Dado.dtNasc);
+            printf("Salario: %f\n", Atual->Dado.salario);
+            next = Atual->next;
+            Atual = next;
+        } while (Atual->next != NULL);
     }
 
-    incluirElementoLista(_dados_, ptTmp);
     return;
 }
 
 int main()
 {
     struct No *lstD = criarLista(); // Lista simples
-    dados tmpDados;
+    struct dados tmpDados;
+
+    // imprimirLista(lstD);
 
     tmpDados.dtNasc = 20241107;
-    tmpDados.endereco = "rua das flores";
-    tmpDados.nome = "Maria das Dores";
-    tmpDados.salario =23000.00;
+    tmpDados.endereco = "rua das flores\0";
+    tmpDados.nome = "Maria das Dores\0";
+    tmpDados.salario = 23000.00;
 
-    incluirElementoLista(tmpDados, lstD);
+    incluirElementoLista(tmpDados, &lstD);
+    imprimirLista(&lstD);
 
-    printf("Ola");
-    printf("Lista %p\n", lstD);
-    //printf(" lista Proximo %p", (lstD==NULL? 0: lstD->next));
+    tmpDados.dtNasc = 20241109;
+    tmpDados.endereco = "rua das borboletas\0";
+    tmpDados.nome = "João das Flores\0";
+    tmpDados.salario = 21000.00;
 
-    //incluirElementoLista(tmpDados, lstD);
+    incluirElementoLista(tmpDados, &lstD);
+    imprimirLista(&lstD);
 
-    printf("Lista %p, proximo %p \n", *lstD, lstD->next );
+    tmpDados.dtNasc = 20241111;
+    tmpDados.endereco = "rua dos canteiros\0";
+    tmpDados.nome = "Ana Botafogo\0";
+    tmpDados.salario = 25000.00;
 
-    incluirElementoLista(tmpDados, lstD);
+    incluirElementoLista(tmpDados, &lstD);
 
-    printf("Ola");
-    printf("Lista %p\n", lstD);
+    imprimirLista(&lstD);
 
-    printf("Lista %p, proximo %p \n", *lstD, &lstD->next );
-
+    liberarLista(lstD);
 }
