@@ -50,7 +50,7 @@ void removeNode(struct Node** head, int data) {
 }
 
 // Função para liberar a memória da lista
-void freeNodes(struct No *head)
+void freeNodes(struct Node *head)
 {
     struct Node *atual = head;
     struct Node *proximo;
@@ -60,7 +60,6 @@ void freeNodes(struct No *head)
         proximo = atual->next;
         free(atual);
         atual = proximo;
-        printf("foi\n");
     }
 
     head = NULL;
