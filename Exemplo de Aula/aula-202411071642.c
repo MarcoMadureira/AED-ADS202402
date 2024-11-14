@@ -22,8 +22,7 @@ struct No
 // Criar uma lista de dados
 struct No *criarLista()
 {
-    struct No *newNo = NULL;
-    return newNo;
+    return NULL;
 }
 
 // Criar um elemento da lista
@@ -60,52 +59,40 @@ void liberarLista(struct No *head)
 // incluir um elemento na lista criada
 void incluirElementoLista(struct dados _dados_, struct No **lista)
 {
-    struct No *Atual = *lista;
-    struct No *Proximo;
-    if(*lista == NULL) *lista = criarNo(_dados_) ;
-    else if( *lista != NULL)
+    struct No *newNo = criarNo(_dados_);
+    if(*lista == NULL) *lista = newNo;
+    else 
     {
         // próximo elemento
-        while ((*lista)->next != NULL)
-        {
-            //Proximo = (*lista)->next;
-            (*lista) = (*lista)->next;// Proximo;
-        }   
-        (*lista) = criarNo(_dados_);     
+        struct No *tmpNo = *lista;
+        while (tmpNo->next != NULL)  tmpNo = tmpNo->next;
+        tmpNo->next = newNo;
     }
-    
     return;
 }
 
 void imprimirLista(struct No *lista)
 {
-     struct No *Atual = lista;
-     struct No *next;
-
-    if (Atual == NULL)
+    struct No* tmpNo = lista;
+    if (tmpNo == NULL)
     {
         printf("\nLista está vazia!\n");
     }
-    else
-    {
-        while (Atual->next != NULL)
+    else while (tmpNo != NULL)
         {
             //printf("\nLista %p\n", &Atual);
-            printf("Nome: %s \n", Atual->Dado.nome);
-            printf("Endereço: %s\n", Atual->Dado.endereco);
-            printf("DtNasc: %d\n", Atual->Dado.dtNasc);
-            printf("Salario: %f\n", Atual->Dado.salario);
-            next = Atual->next;
-            Atual = next;
+            printf("Nome: %s \n", tmpNo->Dado.nome);
+            printf("Endereço: %s\n", tmpNo->Dado.endereco);
+            printf("DtNasc: %d\n", tmpNo->Dado.dtNasc);
+            printf("Salario: %f\n", tmpNo->Dado.salario);
+            tmpNo = tmpNo->next;
         }
-    }
-
     return;
 }
 
 int main()
 {
-    struct No *lstD = NULL; // Lista simples
+    struct No *lstD = criarLista(); 
     struct dados tmpDados;
 
     imprimirLista(lstD);
@@ -132,7 +119,6 @@ int main()
     tmpDados.salario = 25000.00;
 
     incluirElementoLista(tmpDados, &lstD);
-
     imprimirLista(lstD);
 
     liberarLista(lstD);
