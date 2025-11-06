@@ -1,42 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <string.h>
+// #include <string.h>
 
 // Estrutura para conter os dados do registro
-struct dados
+typedef struct dados
 {
     /* data */
     char *nome;
     int dtNasc;
     char *endereco;
     float salario;
-};
+} dados;
 
 struct No
 {
     /* data */
-    struct dados Dado;
-    struct No* next;
+    dados Dado;
+    struct No *next;
 };
 
 // Criar uma lista de dados
 struct No *criarLista()
 {
     return NULL;
-}
-
-// Criar um elemento da lista
-struct No *criarNo(struct dados _dados_)
-{
-    struct No *newNo = (struct No*)malloc(sizeof(struct No));
-    if (newNo == NULL)
-    {
-        printf("\nErro de alocação de memória.\n");
-        return NULL;
-    }
-    newNo->Dado = _dados_;
-    newNo->next = NULL;
-    return newNo;
 }
 
 // Função para liberar a memória da lista
@@ -56,44 +42,114 @@ void liberarLista(struct No *head)
     printf("Memória liberada.\n");
 }
 
-// incluir um elemento na lista criada
-void incluirElementoLista(struct dados _dados_, struct No **lista)
+// incluir um elemento no inicio da lista
+void incluirNoFimLista(dados _dados_, struct No **lista)
 {
-    struct No *newNo = criarNo(_dados_);
-    if(*lista == NULL) *lista = newNo;
-    else 
+    // Reservar a memoria e incluir os dados
+    struct No *newNo = (struct No *)malloc(sizeof(struct No));
+    if (newNo == NULL)
     {
-        // próximo elemento
+        printf("\nErro de alocação de memória.\n");
+        return;
+    }
+    else
+    {
+        newNo->Dado = _dados_;
+        newNo->next = NULL;
+    }
+
+    // Lista está vazia, incluir o primeiro elemento
+    if (*lista == NULL)
+    {
+        (*lista) = newNo;
+    }
+    else
+    {
         struct No *tmpNo = *lista;
-        while (tmpNo->next != NULL)  tmpNo = tmpNo->next;
+        while (tmpNo->next != NULL)
+        {
+            tmpNo = tmpNo->next;
+        }
         tmpNo->next = newNo;
+    }
+    return;
+}
+
+// incluir um elemento na lista criada
+void incluirNoInicioLista(dados _dados_, struct No **lista)
+{
+    struct No *newNoInicio = (struct No *)malloc(sizeof(struct No));
+    if (newNoInicio == NULL)
+    {
+        printf("\nErro de alocação de memória.\n");
+        return;
+    }
+    else
+    {
+        newNoInicio->Dado = _dados_;
+        newNoInicio->next = NULL;
+    }
+    if (*lista == NULL)
+        *lista = newNoInicio;
+    else
+    {
+        newNoInicio->next = *lista;
+        *lista = newNoInicio;
     }
     return;
 }
 
 void imprimirLista(struct No *lista)
 {
-    struct No* tmpNo = lista;
+    struct No *tmpNo = lista;
     if (tmpNo == NULL)
     {
         printf("\nLista está vazia!\n");
     }
-    else while (tmpNo != NULL)
+    else
+        while (tmpNo != NULL)
         {
-            //printf("\nLista %p\n", &Atual);
+            // printf("\nLista %p\n", &Atual);
+            printf("----------------------------------------------");
             printf("Nome: %s \n", tmpNo->Dado.nome);
             printf("Endereço: %s\n", tmpNo->Dado.endereco);
             printf("DtNasc: %d\n", tmpNo->Dado.dtNasc);
             printf("Salario: %f\n", tmpNo->Dado.salario);
+            printf("----------------------------------------------");
             tmpNo = tmpNo->next;
         }
     return;
 }
 
+// Função para remover um nó com um dado específico
+void removeNo(dados _dados_, struct No **head)
+{
+    struct No *temp = *head;
+
+    // Se o nó a ser removido é o nó cabeça
+    // Procura pelo nó a ser removido, guardando o nó anterior
+    while (temp != NULL && temp->Dado.nome != _dados_.nome)
+    {
+        *head = (*head)->next;
+    }
+    // Se o dado não está presente na lista
+    if (*head == NULL)
+    {
+        printf("Nome não encontrado!");
+    }
+    else if ((*head)->Dado.nome == _dados_.nome)
+    {
+        temp = (*head);
+        *head = (*head)->next; // Muda o ponteiro da cabeça
+        free(temp);            // Libera a memória
+    }
+    return;
+}
+
 int main()
 {
-    struct No *lstD = criarLista(); 
-    struct dados tmpDados;
+    struct No *lstD = criarLista();
+    dados tmpDados;
 
     imprimirLista(lstD);
 
@@ -102,7 +158,7 @@ int main()
     tmpDados.nome = "Maria das Dores\0";
     tmpDados.salario = 23000.00;
 
-    incluirElementoLista(tmpDados, &lstD);
+    incluirNoFimLista(tmpDados, &lstD);
     imprimirLista(lstD);
 
     tmpDados.dtNasc = 20241109;
@@ -110,7 +166,7 @@ int main()
     tmpDados.nome = "João das Flores\0";
     tmpDados.salario = 21000.00;
 
-    incluirElementoLista(tmpDados, &lstD);
+    incluirNoFimLista(tmpDados, &lstD);
     imprimirLista(lstD);
 
     tmpDados.dtNasc = 20241111;
@@ -118,7 +174,11 @@ int main()
     tmpDados.nome = "Ana Botafogo\0";
     tmpDados.salario = 25000.00;
 
-    incluirElementoLista(tmpDados, &lstD);
+    incluirNoFimLista(tmpDados, &lstD);
+    imprimirLista(lstD);
+
+    tmpDados.nome = "João das Flores\0";
+    removeNo(tmpDados, &lstD);
     imprimirLista(lstD);
 
     liberarLista(lstD);

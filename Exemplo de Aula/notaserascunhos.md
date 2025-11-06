@@ -54,4 +54,11 @@ int main() {
     return 0;
 }
 
+// Função para adicionar um nó ao início da lista
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    newNode->next = *head;
+    *head = newNode;
+}
+
 ´´´
